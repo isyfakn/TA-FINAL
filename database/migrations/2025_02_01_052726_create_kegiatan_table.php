@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organisasi_id')->nullable()->constrained('organisasi')->onDelete('set null');
-            $table->string('title')->nullable(false);
-            $table->text('body')->nullable(false);
+            $table->string('title');
+            $table->text('body');
             $table->string('foto');
-            $table->dateTime('tgl_mulai')->nullable(false);
+            $table->dateTime('tgl_mulai');
             $table->dateTime('tgl_selesai');
             $table->timestamps();
         });

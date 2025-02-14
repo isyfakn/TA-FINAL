@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kegiatan_id')->constrained('kegiatan')->onDelete('cascade');
             $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
-            $table->date('tgl_daftar')->nullable(false);
+            $table->date('tgl_daftar');
             $table->text('body');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamps();

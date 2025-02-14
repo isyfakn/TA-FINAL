@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('organisasi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->string('nama_organisasi')->nullable(false);
-            $table->text('deskipsi')->nullable(false);
-            $table->string('email')->nullable(false);
-            $table->string('no_telp');
-            $table->year('tgl_berdiri')->nullable(true);
+            $table->string('nama_organisasi');
+            $table->text('deskipsi');
+            $table->string('email');
+            $table->string('no_telp')->nullable();
+            $table->year('thn_berdiri')->nullable();
             $table->string('logo');
             $table->timestamps();
         });

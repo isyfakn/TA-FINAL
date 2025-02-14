@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained()->onDelete('cascade');
-            $table->string('nama_mahasiswa')->nullable(false);
+            $table->string('nama_mahasiswa');
             $table->string('email');
-            $table->string('no_hp');
+            $table->string('no_hp')->nullable();
             $table->date('tgl_lahir');
-            $table->string('prodi')->nullable(false);
-            $table->year('thn_masuk')->nullable(false);
+            $table->string('prodi');
+            $table->year('thn_masuk');
             $table->string('foto');
             $table->timestamps();
         });

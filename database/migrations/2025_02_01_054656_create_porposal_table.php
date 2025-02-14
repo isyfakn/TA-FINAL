@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('porposal', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kegiatan_id')->constrained('kegiatan')->onDelete('cascade');
-            $table->string('title')->nullable(false);
-            $table->date('tgl_pengajuan')->nullable(false);
-            $table->string('file')->nullable(false);
+            $table->string('title');
+            $table->date('tgl_pengajuan');
+            $table->string('file');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->text('keterangan')->nullable(true);
             $table->timestamps();
