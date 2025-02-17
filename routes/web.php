@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
@@ -36,6 +37,10 @@ use App\Http\Controllers\ProposalController;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'role:bpm']], function () {
     Route::get('/bpm', [HomeController::class, 'bpmDashboard'])->name('bpm.dashboard');

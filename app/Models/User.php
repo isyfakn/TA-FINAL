@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    const ROLE_BPM = 'bpm';
+    const ROLE_BEM = 'bem';
+    const ROLE_ORGANISASI = 'organisasi';
+    const ROLE_MAHASISWA = 'mahasiswa';
+
     // Tentukan nama tabel jika berbeda dari konvensi
     protected $table = 'users';
 
