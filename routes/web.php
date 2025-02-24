@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KegiatanController;
-use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\PengajuanController;
 
 
 /*
@@ -62,7 +62,7 @@ Route::resource('users', UserController::class);
 Route::resource('organisasi', OrganisasiController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::resource('kegiatan', KegiatanController::class);
-Route::resource('proposal', ProposalController::class);
-Route::post('proposal/{proposal}/status', [ProposalController::class, 'updateStatus'])->name('proposal.updateStatus');
+Route::resource('pengajuan', PengajuanController::class);
+Route::post('pengajuan/{pengajuan}/status', [PengajuanController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 
 require __DIR__.'/auth.php';

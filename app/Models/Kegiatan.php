@@ -31,8 +31,8 @@ class Kegiatan extends Model
         return $this->hasMany(DaftarKegiatan::class, 'kegiatan_id');
     }
 
-    public function proposal()
+    public function pengajuan()
     {
-        return $this->belongsTo(Proposal::class, 'kegiatan_id');
+        return $this->belongsTo(Pengajuan::class, 'kegiatan_id');
     }
 }
