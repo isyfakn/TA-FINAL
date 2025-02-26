@@ -11,7 +11,7 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
 
     protected $fillable = [
-        'organisasi_id',
+        'pengajuan_id',
         'title',
         'body',
         'foto',
@@ -20,9 +20,9 @@ class Kegiatan extends Model
     ];
 
     // Relasi dengan model Organisasi
-    public function organisasi()
+    public function pengajuan()
     {
-        return $this->belongsTo(Organisasi::class, 'organisasi_id');
+        return $this->belongsTo(Pengajuan::class, 'pengajuan_id');
     }
 
     // Relasi dengan model DaftarKegiatan
@@ -30,9 +30,5 @@ class Kegiatan extends Model
     {
         return $this->hasMany(DaftarKegiatan::class, 'kegiatan_id');
     }
-
-    public function pengajuan()
-    {
-        return $this->belongsTo(Pengajuan::class, 'kegiatan_id');
-    }
+    
 }

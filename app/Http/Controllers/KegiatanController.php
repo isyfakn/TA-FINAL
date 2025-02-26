@@ -23,7 +23,7 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'organisasi_id' => 'nullable|exists:organisasi,id',
+            'pengajuan_id' => 'nullable|exists:pengajuan,id',
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk foto
@@ -32,7 +32,7 @@ class KegiatanController extends Controller
         ]);
 
         $kegiatan = new Kegiatan();
-        $kegiatan->organisasi_id = $request->organisasi_id;
+        $kegiatan->pengajuan_id = $request->pengajuan_id;
         $kegiatan->title = $request->title;
         $kegiatan->body = $request->body;
         $kegiatan->tgl_mulai = $request->tgl_mulai;
@@ -66,7 +66,7 @@ class KegiatanController extends Controller
     public function update(Request $request, Kegiatan $kegiatan)
     {
         $request->validate([
-            'organisasi_id' => 'nullable|exists:organisasi,id',
+            'pengajuan_id' => 'nullable|exists:pengajuan,id',
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'foto.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk foto
@@ -74,7 +74,7 @@ class KegiatanController extends Controller
             'tgl_selesai' => 'required|date|after_or_equal:tgl_mulai',
         ]);
 
-        $kegiatan->organisasi_id = $request->organisasi_id;
+        $kegiatan->pengajuan_id = $request->pengajuan_id;
         $kegiatan->title = $request->title;
         $kegiatan->body = $request->body;
         $kegiatan->tgl_mulai = $request->tgl_mulai;

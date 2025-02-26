@@ -26,8 +26,8 @@ class Organisasi extends Model
         return $this->belongsTo(User::class, 'users_id');
     } //1 user 1 organisasi
 
-    public function kegiatan()
+    public function pengajuan()
     {
-        return $this->hasMany(Kegiatan::class, 'organisasi_id');
-    } //memiliki banyak kegiatan
+        return $this->hasMany(Pengajuan::class, 'organisasi_id');
+    } //memiliki banyak pengajuan
 }
