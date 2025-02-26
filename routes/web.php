@@ -42,6 +42,9 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/admin', [HomeController::class, 'admin'])->name('admin.index');
+});
 Route::group(['middleware' => ['auth', 'role:bpm']], function () {
     Route::get('/bpm', [HomeController::class, 'bpmDashboard'])->name('bpm.dashboard');
 });

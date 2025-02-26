@@ -25,6 +25,8 @@ class AuthController extends Controller
 
             $user = Auth::user();
             switch ($user->role) {
+                case User::ROLE_ADMIN:
+                    return redirect()->route('admin.index');
                 case User::ROLE_BPM:
                     return redirect()->route('bpm.dashboard');
                 case User::ROLE_BEM:

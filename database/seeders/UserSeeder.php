@@ -24,6 +24,14 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'username' => 'mahasiswa2',
+                'email' => 'mhs2@gmail.com',
+                'password' => bcrypt('12345678'), // Menggunakan bcrypt untuk meng-hash password
+                'role' => 'mahasiswa',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'username' => 'bpm',
                 'email' => 'bpm@gmail.com',
                 'password' => bcrypt('12345678'),
@@ -48,13 +56,14 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'username' => 'mahasiswa2',
-                'email' => 'mhs2@gmail.com',
+                'username' => 'admin',
+                'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345678'), // Menggunakan bcrypt untuk meng-hash password
-                'role' => 'mahasiswa',
+                'role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            
         ]);
     }
 }

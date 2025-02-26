@@ -11,6 +11,11 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function admin()
+    {
+        return view('admin.index');
+    }
+
     public function bpmDashboard()
     {
         return view('bpm.dashboard');

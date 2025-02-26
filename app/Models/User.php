@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 'admin';
     const ROLE_BPM = 'bpm';
     const ROLE_BEM = 'bem';
     const ROLE_ORGANISASI = 'organisasi';
