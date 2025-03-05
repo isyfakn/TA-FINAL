@@ -26,7 +26,7 @@ class DaftarKegiatanSeeder extends Seeder
             ],
             [
                 'kegiatan_id' => 2, // Pastikan ID ini sesuai dengan ID kegiatan yang ada di tabel kegiatan
-                'mahasiswa_id' => 5, // Pastikan ID ini sesuai dengan ID mahasiswa yang ada di tabel mahasiswa
+                'mahasiswa_id' => 2, // Pastikan ID ini sesuai dengan ID mahasiswa yang ada di tabel mahasiswa
                 'tgl_daftar' => '2023-10-02',
                 'body' => 'Saya ingin mendaftar untuk kegiatan B.',
                 'status' => 'Approved',
@@ -35,7 +35,7 @@ class DaftarKegiatanSeeder extends Seeder
             ],
             [
                 'kegiatan_id' => 3, // Pastikan ID ini sesuai dengan ID kegiatan yang ada di tabel kegiatan
-                'mahasiswa_id' => 5, // Pastikan ID ini sesuai dengan ID mahasiswa yang ada di tabel mahasiswa
+                'mahasiswa_id' => 2, // Pastikan ID ini sesuai dengan ID mahasiswa yang ada di tabel mahasiswa
                 'tgl_daftar' => '2023-10-03',
                 'body' => 'Saya ingin mendaftar untuk kegiatan C.',
                 'status' => 'Rejected',
