@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('daftar_kegiatan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kegiatan_id')->constrained('kegiatan')->onDelete('cascade');
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
+            $table->foreignId('mahasiswa_id')->constrained('mahasiswa')->onDelete('cascade');
             $table->date('tgl_daftar');
-            $table->text('body');
-            $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

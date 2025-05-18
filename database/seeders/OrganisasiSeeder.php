@@ -16,7 +16,7 @@ class OrganisasiSeeder extends Seeder
     {
         DB::table('organisasi')->insert([
             [
-                'users_id' => 2, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
+                'user_id' => 9, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
                 'nama_organisasi' => 'BPM',
                 'deskipsi' => 'Deskripsi untuk BPM',
                 'email' => 'bpm@gmail.com',
@@ -27,7 +27,7 @@ class OrganisasiSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'users_id' => 3, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
+                'user_id' => 10, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
                 'nama_organisasi' => 'BEM',
                 'deskipsi' => 'Deskripsi untuk BEM',
                 'email' => 'bem@gmail.com',
@@ -38,7 +38,7 @@ class OrganisasiSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'users_id' => 4, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
+                'user_id' => 11, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
                 'nama_organisasi' => 'Ormawa',
                 'deskipsi' => 'Deskripsi untuk Ormawa',
                 'email' => 'ormawa@gmail.com',

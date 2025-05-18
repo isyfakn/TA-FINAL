@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Pengajuan extends Model
 {
     use HasFactory;
-    protected $table = 'pengajuan'; // Jika nama tabel tetap 'porposal'
+    protected $table = 'pengajuan'; // Jika nama tabel tetap ''
 
     protected $fillable = [
-        'organisasi_id',
-        'nama_kegiatan',
+        'rab_id',
         'tgl_kegiatan',
         'proposal_file',
         'status_proposal',
@@ -23,8 +22,8 @@ class Pengajuan extends Model
     ];
 
     // Relasi dengan model Kegiatan
-    public function organisasi()
+    public function rab()
     {
-        return $this->belongsTo(Organisasi::class, 'organisasi_id');
+        return $this->belongsTo(Rab::class, 'rab_id');
     }
 }

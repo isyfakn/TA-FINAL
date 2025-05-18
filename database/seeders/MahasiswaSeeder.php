@@ -16,7 +16,7 @@ class MahasiswaSeeder extends Seeder
     {
         DB::table('mahasiswa')->insert([
             [
-                'users_id' => 1, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
+                'user_id' => 7, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
                 'nama_mahasiswa' => 'Mahasiswa A',
                 'email' => 'mahasiswaA@example.com',
                 'no_hp' => '081234567890',
@@ -28,7 +28,7 @@ class MahasiswaSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'users_id' => 5, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
+                'user_id' => 8, // Pastikan ID ini sesuai dengan ID pengguna yang ada di tabel users
                 'nama_mahasiswa' => 'Mahasiswa B',
                 'email' => 'mahasiswaB@example.com',
                 'no_hp' => '081234567891',

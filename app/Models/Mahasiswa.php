@@ -12,10 +12,10 @@ class Mahasiswa extends Model
     protected $table = 'mahasiswa';
 
     protected $fillable = [
-        'users_id',
+        'user_id',
+        'nim',
         'nama_mahasiswa',
         'email',
-        'no_hp',
         'tgl_lahir',
         'prodi',
         'thn_masuk',
@@ -24,11 +24,11 @@ class Mahasiswa extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     } // 1 user 1 mahasiswa
 
-    public function daftarKegiatan()
-    {
-        return $this->hasMany(DaftarKegiatan::class, 'mahasiswa_id');
-    }
+    // public function daftarKegiatan()
+    // {
+    //     return $this->hasMany(DaftarKegiatan::class, 'mahasiswa_id');
+    // }
 }

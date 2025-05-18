@@ -14,11 +14,21 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (!Auth::check() || !in_array(Auth::user()->role, $roles)){
-            return redirect('/'); //redirect jika tidak memiliki akses
+        if (auth()->check()) {
+            $user = auth()->user();
+            
+            // Check if user has completed their profile
+            if ($user->role == 'mahasiswa' && !$user->mahasiswa) {
+                return redirect()->route('mahasiswa.create');
+            }
+            
+            if ($user->role == 'organisasi' && !$user->organisasi) {
+                return redirect()->route('organisasi.create');
+            }
         }
+        
         return $next($request);
     }
 }

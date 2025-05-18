@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        return view('welcome');
+    }
+    
     public function showLoginForm()
     {
         return view('auth.login');
@@ -16,7 +21,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|emial',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
@@ -25,22 +30,22 @@ class AuthController extends Controller
 
             $user = Auth::user();
             switch ($user->role) {
-                case User::ROLE_ADMIN:
-                    return redirect()->route('admin.index');
-                case User::ROLE_BPM:
-                    return redirect()->route('bpm.dashboard');
-                case User::ROLE_BEM:
-                    return redirect()->route('bem.dashboard');
-                case User::ROLE_ORGANISASI:
-                    return redirect()->route('organisasi.dashboard');
-                case User::ROLE_MAHASISWA:
-                    return redirect()->route('mahasiswa.dashboard');
+                case 'kemahasiswaan':
+                    return redirect()->route('dashboard');
+                case 'bembpm':
+                    return redirect()->route('dashboard');
+                case 'organisasi':
+                    return redirect()->route('dashboard');
+                case 'mahasiswa':
+                    return redirect()->route('dashboard');
                 default:
                     return redirect()->route('home');
             }
         }
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email salah.',
+            'email' => 'Password salah.'
         ]);
     }
 
@@ -49,6 +54,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('login');
     }
 }

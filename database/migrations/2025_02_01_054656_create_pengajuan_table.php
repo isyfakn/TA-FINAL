@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organisasi_id')->constrained('organisasi')->onDelete('cascade');
-            $table->string('nama_kegiatan');
+            $table->foreignId('rab_id')->constrained('rab')->onDelete('cascade');
             $table->date('tgl_kegiatan')->nullable();
             $table->string('proposal_file')->nullable();
             $table->enum('status_proposal', ['Pending', 'Approved', 'Rejected'])->default('Pending');

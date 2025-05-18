@@ -16,7 +16,7 @@ class KegiatanSeeder extends Seeder
     {
         DB::table('kegiatan')->insert([
             [
-                'pengajuan_id' => 1, // Pastikan ID ini sesuai dengan ID pengajuan yang ada di tabel pengajuan
+                'organisasi_id' => 1, // Pastikan ID ini sesuai dengan ID organisasi yang ada di tabel organisasi
                 'title' => 'Kegiatan A',
                 'body' => 'Deskripsi kegiatan A.',
                 'foto' => 'foto_kegiatan_a.png',
@@ -26,7 +26,7 @@ class KegiatanSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'pengajuan_id' => 2, // Pastikan ID ini sesuai dengan ID pengajuan yang ada di tabel pengajuan
+                'organisasi_id' => 2, // Pastikan ID ini sesuai dengan ID organisasi yang ada di tabel organisasi
                 'title' => 'Kegiatan B',
                 'body' => 'Deskripsi kegiatan B.',
                 'foto' => 'foto_kegiatan_b.png',
@@ -36,7 +36,7 @@ class KegiatanSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'pengajuan_id' => 3, // Pastikan ID ini sesuai dengan ID pengajuan yang ada di tabel pengajuan
+                'organisasi_id' => 3, // Pastikan ID ini sesuai dengan ID organisasi yang ada di tabel organisasi
                 'title' => 'Kegiatan C',
                 'body' => 'Deskripsi kegiatan C.',
                 'foto' => 'foto_kegiatan_c.png',

@@ -12,9 +12,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    const ROLE_ADMIN = 'admin';
-    const ROLE_BPM = 'bpm';
-    const ROLE_BEM = 'bem';
+    const ROLE_KEMAHASISWAAN = 'kemahasiswaan';
+    const ROLE_BEMBPM = 'bembpm';
     const ROLE_ORGANISASI = 'organisasi';
     const ROLE_MAHASISWA = 'mahasiswa';
 
@@ -37,10 +36,25 @@ class User extends Authenticatable
     // Tentukan kolom yang tidak boleh diubah secara massal
     protected $guarded = [];
 
-    // Jika ada relasi yang ingin didefinisikan, tambahkan di sini
-    // Contoh:
-    // public function posts()
-    // {
-    //     return $this->hasMany(Post::class);
-    // }
+    public function organisasi()
+    {
+        return $this->hasOne(Organisasi::class, 'user_id'); // Assuming 'user_id' is the foreign key in the 'organisasi' table
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'user_id'); // Assuming 'user_id' is the foreign key in the 'organisasi' table
+    }
+
+    public function getProfileImage()
+    {
+        if ($this->role === 'mahasiswa' && $this->mahasiswa && $this->mahasiswa->foto) {
+            return asset('storage/' . $this->mahasiswa->foto);
+        } elseif ($this->role === 'organisasi' && $this->organisasi && $this->organisasi->logo) {
+            return asset('storage/' . $this->organisasi->logo);
+        } else {
+            // Default image if no profile picture/logo is set
+            return asset('storage/default.jpg');
+        }
+    }
 }

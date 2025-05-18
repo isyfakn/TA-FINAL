@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pengajuan_id')->nullable()->constrained('pengajuan')->onDelete('set null');
+            $table->foreignId('organisasi_id')->constrained('organisasi')->onDelete('cascade');
             $table->string('title');
             $table->text('body');
-            $table->string('foto');
-            $table->dateTime('tgl_mulai');
-            $table->dateTime('tgl_selesai');
+            $table->text('foto');
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai')->nullable();
             $table->timestamps();
         });
     }

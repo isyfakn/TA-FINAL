@@ -12,7 +12,7 @@ class Organisasi extends Model
     protected $table = 'organisasi';
 
     protected $fillable = [
-        'users_id',
+        'user_id',
         'nama_organisasi',
         'deskripsi',
         'email',
@@ -23,11 +23,16 @@ class Organisasi extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     } //1 user 1 organisasi
 
-    public function pengajuan()
-    {
-        return $this->hasMany(Pengajuan::class, 'organisasi_id');
-    } //memiliki banyak pengajuan
+    // public function kegiatan()
+    // {
+    //     return $this->hasMany(Kegiatan::class, 'organisasi_id');
+    // } //memiliki banyak pengajuan
+
+//     public function rab()
+//     {
+//         return $this->hasOne(Rab::class, 'organisasi_id');
+//     }
 }

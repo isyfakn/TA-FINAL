@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('organisasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('nama_organisasi');
-            $table->text('deskipsi');
+            $table->text('deskripsi');
             $table->string('email');
             $table->string('no_telp')->nullable();
             $table->year('thn_berdiri')->nullable();

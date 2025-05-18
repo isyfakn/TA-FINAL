@@ -1,40 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Daftar Kegiatan</h4>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Judul Kegiatan</th>
-                                <th>Deskripsi</th>
-                                <th>Foto</th>
-                                <th>Tanggal Mulai</th>
-                                <th>Tanggal Selesai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($kegiatans as $keg)
-                                <tr>
-                                    <td>{{ $keg->id }}</td>
-                                    <td>{{ $keg->title }}</td>
-                                    <td>{{ $keg->body }}</td>
-                                    <td><img src="{{ asset('path/to/images/' . $keg->foto) }}" alt="Foto Kegiatan" style="width: 100px;"></td>
-                                    <td>{{ $keg->tgl_mulai }}</td>
-                                    <td>{{ $keg->tgl_selesai }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="container">
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
         </div>
+    @endif
+
+    @if (session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+    @endif
+    <h3 class="text-center mb-4">Event</h3>
+
+    <div class="row">
+        @if($kegiatans->isEmpty())
+            <div class="col-12 text-center">
+                <p>Tidak ada kegiatan yang terlaksana.</p>
+            </div>
+        @else
+            @foreach($kegiatans as $kegiatan)
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ asset('storage/' . json_decode($kegiatan->foto)[0]) }}" class="card-img-top" alt="{{ $kegiatan->title }}" style="height: 150px; object-fit: cover;">
+                        <div class="card-body">
+                            <h2 class="card-title text-uppercase text-center"><strong>{{ $kegiatan->title }}</strong></h2>
+                            <p class="card-text">{{ \Carbon\Carbon::parse($kegiatan->tgl_mulai)->format('d M Y') }}</p>
+                            {{-- <p class="card-text">Penyelenggara: {{ $kegiatan->organisasi->nama_organisasi ?? 'Tidak Ada' }}</p> --}}
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-end gap-1"> <!-- gap lebih kecil -->
+                                <a href="{{ route('kegiatan.show', $kegiatan->id) }}" class="btn btn-info btn-sm px-2"> <!-- padding horizontal lebih kecil -->
+                                    <i class="mdi mdi-eye"></i> Detail
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
     </div>
 </div>
+
+
 @endsection

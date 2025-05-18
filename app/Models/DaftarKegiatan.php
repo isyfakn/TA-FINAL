@@ -21,12 +21,12 @@ class DaftarKegiatan extends Model
     // Relasi dengan model Kegiatan
     public function kegiatan()
     {
-        return $this->belongsTo(Kegiatan::class, 'kegiatan_id');
+        return $this->belongsTo(Kegiatan::class);
     }
 
     // Relasi dengan model Mahasiswa
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+        return $this->belongsTo(Mahasiswa::class);
     }
 }
