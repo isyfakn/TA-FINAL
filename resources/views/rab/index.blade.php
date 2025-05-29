@@ -72,7 +72,7 @@
                         @endif
                         <th>Nama Kegiatan</th>
                         <th>Rencana Anggaran</th>
-                        @if (Auth::user()->role !== 'kemahasiswaan')
+                        @if (Auth::user()->role === 'organisasi')
                         <th>Aksi</th>
                         @endif
                     </tr>
@@ -91,7 +91,7 @@
                             @endif
                             <td>{{ $item->nama_kegiatan }}</td>
                             <td>Rp {{ number_format($item->rencana_anggaran, 0, ',', '.') }}</td>
-                            @if (Auth::user()->role !== 'kemahasiswaan')
+                            @if (Auth::user()->role === 'organisasi')
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editRabModal" onclick="openEditModal({{ $item->id }})"><i class="fa fa-edit"></i></a>

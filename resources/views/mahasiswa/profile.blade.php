@@ -3,7 +3,16 @@
 @section('content')
 <div class="container">
     <h3>Profil Mahasiswa</h3>
-    
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+    @endif
     <div class="card">
         <div class="card-header text-center text-uppercase">
             <h2>{{ $mahasiswa->nama_mahasiswa }}</h2>
@@ -11,17 +20,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    @if ($mahasiswa->foto && Storage::exists('public/' . $mahasiswa->foto))
                         <img src="{{ asset('storage/' . $mahasiswa->foto) }}" alt="Foto Mahasiswa" class="img-fluid" style="max-height: 300px;">
-                    @else
-                        <img src="{{ asset('storage/default.jpg') }}" alt="Foto Default" class="img-fluid" style="max-height: 300px;">
-                    @endif
                 </div>
                 <div class="col-md-8">
                     <ul class="list-group">
                         <li class="list-group-item"><strong>NIM:</strong> {{ $mahasiswa->nim }}</li>
                         <li class="list-group-item"><strong>Email:</strong> {{ $mahasiswa->email }}</li>
-                        <li class="list-group-item"><strong>No HP:</strong> {{ $mahasiswa->no_hp ?? 'Tidak ada' }}</li>
                         <li class="list-group-item"><strong>Tanggal Lahir:</strong> {{ \Carbon\Carbon::parse($mahasiswa->tgl_lahir)->format('d-m-Y') }}</li>
                         <li class="list-group-item"><strong>Program Studi:</strong> {{ $mahasiswa->prodi }}</li>
                         <li class="list-group-item"><strong>Tahun Masuk:</strong> {{ $mahasiswa->thn_masuk }}</li>
@@ -64,6 +68,11 @@
                         <input type="text" name="nama_mahasiswa" class="form-control" id="edit_nama_mahasiswa" value="{{ $mahasiswa->nama_mahasiswa }}" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="edit_nim" class="form-label">NIM</label>
+                        <input type="text" name="nim" class="form-control" id="edit_nim" value="{{ $mahasiswa->nim}}" required>
+                    </div>
+
                     <!-- Email -->
                     <div class="mb-3">
                         <label for="edit_email" class="form-label">Email</label>
@@ -80,21 +89,21 @@
                     <!-- Program Studi -->
                     <div class="mb-3">
                         <label for="edit_prodi" class="form-label">Program Studi</label>
-                        <select name="prodi" id="edit_prodi" class="form-control" value="{{ $mahasiswa->prodi }}" required>
-                            <option value="" disabled selected>{{ __('Pilih Program Studi') }}</option>
-                            <option value="D3 Teknik Komputer" {{ old('prodi') == 'D3 Teknik Komputer' ? 'selected' : '' }}>D3 Teknik Komputer</option>
-                            <option value="D3 Teknik Mesin" {{ old('prodi') == 'D3 Teknik Mesin' ? 'selected' : '' }}>D3 Teknik Mesin</option>
-                            <option value="D3 Teknik Elektronika" {{ old('prodi') == 'D3 Teknik Elektronika' ? 'selected' : '' }}>D3 Teknik Elektronika</option>
-                            <option value="D3 Desain Komunikasi Visual" {{ old('prodi') == 'D3 Desain Komunikasi Visual' ? 'selected' : '' }}>D3 Desain Komunikasi Visual</option>
-                            <option value="D3 Akuntansi" {{ old('prodi') == 'D3 Akuntansi' ? 'selected' : '' }}>D3 Akuntansi</option>
-                            <option value="D3 Perhotelan" {{ old('prodi') == 'D3 Perhotelan' ? 'selected' : '' }}>D3 Perhotelan</option>
-                            <option value="D3 Farmasi" {{ old('prodi') == 'D3 Farmasi' ? 'selected' : '' }}>D3 Farmasi</option>
-                            <option value="D3 Kebidanan" {{ old('prodi') == 'D3 Kebidanan' ? 'selected' : '' }}>D3 Kebidanan</option>
-                            <option value="D3 Keperawatan" {{ old('prodi') == 'D3 Keperawatan' ? 'selected' : '' }}>D3 Keperawatan</option>
-                            <option value="D4 Akuntansi Sektor Publik" {{ old('prodi') == 'D4 Akuntansi Sektor Publik' ? 'selected' : '' }}>D4 Akuntansi Sektor Publik</option>
-                            <option value="D4 Teknik Informatika" {{ old('prodi') == 'D4 Teknik Informatika' ? 'selected' : '' }}>D4 Teknik Informatika</option>
+                        <select name="prodi" id="edit_prodi" class="form-control" required>
+                            <option value="" disabled>{{ __('Pilih Program Studi') }}</option>
+                            <option value="D3 Teknik Komputer" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Teknik Komputer' ? 'selected' : '' }}>D3 Teknik Komputer</option>
+                            <option value="D3 Teknik Mesin" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Teknik Mesin' ? 'selected' : '' }}>D3 Teknik Mesin</option>
+                            <option value="D3 Teknik Elektronika" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Teknik Elektronika' ? 'selected' : '' }}>D3 Teknik Elektronika</option>
+                            <option value="D3 Desain Komunikasi Visual" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Desain Komunikasi Visual' ? 'selected' : '' }}>D3 Desain Komunikasi Visual</option>
+                            <option value="D3 Akuntansi" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Akuntansi' ? 'selected' : '' }}>D3 Akuntansi</option>
+                            <option value="D3 Perhotelan" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Perhotelan' ? 'selected' : '' }}>D3 Perhotelan</option>
+                            <option value="D3 Farmasi" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Farmasi' ? 'selected' : '' }}>D3 Farmasi</option>
+                            <option value="D3 Kebidanan" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Kebidanan' ? 'selected' : '' }}>D3 Kebidanan</option>
+                            <option value="D3 Keperawatan" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D3 Keperawatan' ? 'selected' : '' }}>D3 Keperawatan</option>
+                            <option value="D4 Akuntansi Sektor Publik" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D4 Akuntansi Sektor Publik' ? 'selected' : '' }}>D4 Akuntansi Sektor Publik</option>
+                            <option value="D4 Teknik Informatika" {{ (old('prodi') ?? $mahasiswa->prodi ?? '') == 'D4 Teknik Informatika' ? 'selected' : '' }}>D4 Teknik Informatika</option>
                         </select>
-                </div>
+                    </div>
 
                     <!-- Tahun Masuk -->
                     <div class="mb-3">
@@ -127,10 +136,12 @@
             document.getElementById('edit_id').value = data.id;
             document.getElementById('edit_user_id').value = data.user_id;
             document.getElementById('edit_nama_mahasiswa').value = data.nama_mahasiswa;
+            document.getElementById('edit_nim').value = data.nim;
             document.getElementById('edit_email').value = data.email;
             document.getElementById('edit_no_hp').value = data.no_hp;
             document.getElementById('edit_tgl_lahir').value = data.tgl_lahir;
-            document.getElementById('edit_prodi').value = data.prodi;
+            const prodiSelect = document.getElementById('edit_prodi');
+            prodiSelect.value = data.prodi;
             document.getElementById('edit_thn_masuk').value = data.thn_masuk;
 
 

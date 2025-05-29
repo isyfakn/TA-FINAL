@@ -74,4 +74,7 @@ class DaftarKegiatanController extends Controller
         return redirect()->route('kegiatan.index', $request->kegiatan_id)
             ->with('success', 'Pendaftaran kegiatan berhasil!');
     }
+
+    
+
 }

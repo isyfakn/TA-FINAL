@@ -117,13 +117,13 @@
                     <!-- Tahun Berdiri -->
                     <div class="mb-3">
                         <label for="edit_thn_berdiri" class="form-label">Tahun Berdiri</label>
-                        <input type="text" name="thn_berdiri" class="form-control" id="edit_thn_berdiri" value="{{ $organisasis->thn_berdiri }}" required>
+                        <input type="text" name="thn_berdiri" class="form-control" id="edit_thn_berdiri" value="{{ $organisasis->thn_berdiri }}" >
                     </div>
 
                     <!-- No Telepon -->
                     <div class="mb-3">
                         <label for="edit_no_telp" class="form-label">No Telepon</label>
-                        <input type="text" name="no_telp" class="form-control" id="edit_no_telp" value="{{ $organisasis->no_telp }}" required>
+                        <input type="text" name="no_telp" class="form-control" id="edit_no_telp" value="{{ $organisasis->no_telp }}" >
                     </div>
 
                     <!-- Email -->
