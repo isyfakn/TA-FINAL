@@ -34,38 +34,59 @@
                 <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
 
                 @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Terjadi kesalahan:</strong>
+                        <ul class="mb-0">
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
-                <form class="pt-3" method="POST" action="{{ route('users.store') }}">
+                <form class="pt-3" method="POST" action="{{ route('register') }}">
                     @csrf <!-- Tambahkan CSRF token untuk keamanan -->
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Username" required>
+                        <input type="text" class="form-control form-control-lg @error('username') is-invalid @enderror" 
+                               id="username" name="username" placeholder="Username" value="{{ old('username') }}" required>
+                        @error('username')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email" required>
+                        <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" 
+                               id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" 
+                               id="password" name="password" placeholder="Password" required>
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <select class="form-select form-select-lg" id="role" name="role" required>
-                            <option>-- Pilih Role --</option>
-                            <option value="organisasi">Organisasi</option>
-                            <option value="mahasiswa">Mahasiswa</option>
+                        <select class="form-select form-select-lg @error('role') is-invalid @enderror" id="role" name="role" required>
+                            <option value="">-- Pilih Role --</option>
+                            <option value="organisasi" {{ old('role') == 'organisasi' ? 'selected' : '' }}>Organisasi</option>
+                            <option value="mahasiswa" {{ old('role') == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa</option>
                         </select>
+                        @error('role')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-4">
                         <div class="form-check">
                             <label class="form-check-label text-muted">
-                                <input type="checkbox" class="form-check-input" name="terms" required> I agree to all Terms & Conditions
+                                <input type="checkbox" class="form-check-input @error('terms') is-invalid @enderror" 
+                                       name="terms" value="1" {{ old('terms') ? 'checked' : '' }} required> I agree to all Terms & Conditions
                             </label>
+                            @error('terms')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mt-3 d-grid gap-2">
